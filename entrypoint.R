@@ -1,5 +1,5 @@
 # entrypoint.R
-pr <- plumb("plumber.R")
+pr <- plumb("notplumber.R")
 
 # Register an exit handler
 pr$registerHook("exit", function(){
