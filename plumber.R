@@ -18,23 +18,11 @@ library(plumber)
 #* @param msg The message to echo
 #* @get /echo
 function(msg=""){
-    Sys.sleep(5)
   list(msg = paste0("The message is: '", msg, "'"))
 }
 
-#* Plot a histogram
-#* @png
-#* @get /plot
+#* Return the rows in db connection
+#* @get /rows
 function(){
-  rand <- rnorm(100)
-  hist(rand)
+    DBI::dbGetQuery(pool, "SELECT count(*) as count FROM mtcars WHERE cyl = 4")
 }
-
-#* Return the sum of two numbers
-#* @param a The first number to add
-#* @param b The second number to add
-#* @post /sum
-function(a, b){
-  as.numeric(a) + as.numeric(b)
-}
-
