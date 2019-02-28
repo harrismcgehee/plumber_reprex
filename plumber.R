@@ -24,5 +24,5 @@ function(msg=""){
 #* Return the rows in db connection
 #* @get /rows
 function(){
-    DBI::dbGetQuery(con, "SELECT count(*) as count FROM mtcars WHERE cyl = 4")
+    DBI::dbGetQuery(pool, "SELECT count(*) as count FROM mtcars WHERE cyl = 4")
 }
