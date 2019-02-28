@@ -1,14 +1,10 @@
-print("hello")
-asd <- 12123
-pool <- UNOSODBC::conn_pool("MODBSAS")
 
 # entrypoint.R
 #con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
-con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "table.sqlite")
-DBI::dbWriteTable(con, "mtcars", mtcars, overwrite=TRUE)
+# con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "table.sqlite")
+# DBI::dbWriteTable(con, "mtcars", mtcars, overwrite=TRUE)
 
-pool <- pool::dbPool(con)
-
+pool <- pool::dbPool(RSQLite::SQLite(), dbname = "table.sqlite")
 
 pr <- plumb("plumber.R")
 
@@ -16,8 +12,7 @@ pr <- plumb("plumber.R")
 pr$registerHook("exit", function(){
     print("See ya later")
     testthat::expect_equal(pool::poolClose(pool),NULL)
-    testthat::expect_equal(DBI::dbDisconnect(con),TRUE)
-
+    # testthat::expect_equal(DBI::dbDisconnect(con),TRUE)
 })
 
 pr
