@@ -10,4 +10,4 @@ DBI::dbWriteTable(con, "mtcars", mtcars, overwrite=TRUE)
 DBI::dbDisconnect(con)
 
 library(plumber)
-plumber::plumb(dir = getwd())$run()
+plumber::plumb(dir = getwd())$run(swagger = TRUE)

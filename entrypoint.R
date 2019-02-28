@@ -1,7 +1,4 @@
 
-# entrypoint.R
-#con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
-
 
 pool <- pool::dbPool(RSQLite::SQLite(), dbname = "table.sqlite")
 
